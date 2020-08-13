@@ -118,6 +118,10 @@ To pass arguments you have to use the arrow function when you define the event:
 ```javascript
 onClick={() => this.handleClick('Goal')}
 ```
+And of course use it in the handler too:
+```javascript
+handleClick = (arg) => { ... }
+```
 
 #### Binding an Event Handler
 Another option to use `this` in an event handler is to bind it in the constructor:
