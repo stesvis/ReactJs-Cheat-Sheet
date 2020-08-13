@@ -119,6 +119,17 @@ To pass arguments you have to use the arrow function when you define the event:
 onClick={() => this.handleClick('Goal')}
 ```
 
+#### Binding an Event Handler
+Another option to use `this` in an event handler is to bind it in the constructor:
+```javascript
+  constructor(props) {
+    super(props);
+
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
+```
+
 ### Passing the Event
 You can pass the actual event and it will be automatically available:
 ```javascript
@@ -172,7 +183,7 @@ W3 Schools React forms tutorial: https://www.w3schools.com/react/react_forms.asp
 
 #### Notes
 * The `state` field names must match the `form` field names
-* You can make an event handler to handle changes from each `form` field
+* You can make a `handleChange` event handler to handle changes from each `form` field
 * The `handleSubmit` event handler needs to call `event.preventDefault()` to **prevent page reload**, check the form **validation**, and **submit** the form via API call
 
 #### Submitting a Form
@@ -207,7 +218,7 @@ class MyForm extends React.Component {
     // call the POST api
   }
   
-  handleFieldChange = (event) => {
+  handleChange = (event) => {
     let fieldName = event.target.name;
     let val = event.target.value;
     
@@ -235,14 +246,14 @@ class MyForm extends React.Component {
           type='text'
           name='username'
           value='{this.state.username}'
-          onChange={this.handleFieldChange}
+          onChange={this.handleChange}
         />
         
         <p>Enter your age:</p>
         <input
           type='text'
           name='age'
-          onChange={this.handleFieldChange}
+          onChange={this.handleChange}
         />
         
         <select value={this.state.myCar}>
