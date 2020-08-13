@@ -259,23 +259,65 @@ class MyForm extends React.Component {
 ## CSS
 You can style components using CSS, but the property names must be **camelCased** like for the events, for example: `backgroundColor` vs `background-color`
 
-#### Inline CSS
+### Inline CSS
 ```javascript
-<h1 style={{ backgroundColor: 'lightblue' }}>Hello Style!</h1>
+<h1 style={{ backgroundColor: 'blue' }}>This is a Title</h1>
 ```
 
-#### Object CSS
+### Object CSS
 ```javascript
   render() {
-    const mystyle = {
-      color: 'white',
-      backgroundColor: 'DodgerBlue',
-      padding: '10px',
-      fontFamily: 'Arial'
+    const bigBlueTitleStyle = {
+      color: DodgerBlue;
+      padding: 40px;
+      font-family: Arial;
+      text-align: center;
     };
     
     return (
-      <h1 style={mystyle}>Hello Style!</h1>
+      <h1 style={bigBlueTitleStyle}>This is a Title</h1>
     );
   }
+```
+
+### Stylesheets
+You can write your CSS styling in a separate file, just save the file with the `.css` file extension, and import it in the application.
+
+#### App.css
+```css
+body {
+  background-color: #282c34;
+  color: white;
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+
+<!-- Define other styles as usual -->
+```
+
+#### App.js
+```javascript
+import './App.css';
+```
+
+### Modules
+Create the CSS module with the `.module.css` extension:
+#### myStyle.module.css
+```css
+.bigBlueTitle {
+  color: DodgerBlue;
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+```
+
+Import the stylesheet in your component and use the style:
+#### App.js
+```javascript
+import styles from './mystyle.module.css';
+```
+```javascript
+return <h1 className={styles.bigBlueTitle}>This is a Title</h1>;
 ```
