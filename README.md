@@ -179,26 +179,57 @@ class MyForm extends React.Component {
     
     // state field names must match the form field names
     this.state = {
-      username: '',
+      username: 'Initial value',
       age: null,
+      myCar: 'Volvo',
+      errorMessage: ''
     };
+  }
+  
+  handleSubmit = (event) => {
+    event.preventDefault(); // avoids page reload
+    
+    let age = this.state.age;
+    
+    // you can validate on submit
+    if (!Number(age)) {
+      //alert("Your age must be a number");
+      error = <strong>Your age must be a number</strong>;
+      this.setState({ errorMessage: error });
+      return;
+    }
+    
+    // call the POST api
   }
   
   handleFieldChange = (event) => {
     let fieldName = event.target.name;
     let val = event.target.value;
+    
+    // you can do live validation in this handler or in the submit handler
+    if (fieldName === "age") {
+      if (!Number(val)) {
+        //alert("Your age must be a number");
+        error = <strong>Your age must be a number</strong>;
+      }
+    }
+    
+    this.setState({ errorMessage: error });
     this.setState({ [fieldName]: val }); // access the field via state array
   }
   
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <h1>Hello {this.state.username} {this.state.age}</h1>
+        
+        {this.state.errorMessage}
         
         <p>Enter your name:</p>
         <input
           type='text'
           name='username'
+          value='{this.state.username}'
           onChange={this.handleFieldChange}
         />
         
@@ -207,7 +238,13 @@ class MyForm extends React.Component {
           type='text'
           name='age'
           onChange={this.handleFieldChange}
-      />
+        />
+        
+        <select value={this.state.myCar}>
+          <option value="Ford">Ford</option>
+          <option value="Volvo">Volvo</option>
+          <option value="Fiat">Fiat</option>
+        </select>
       </form>
     );
   }
