@@ -14,79 +14,6 @@ cd <app_name>
 npm start
 ```
 
-## React App Lifecycle
-The three phases are: **Mounting**, **Updating**, **Unmounting** and **ErrorHandling**.
-
-### Mounting
-1. `constructor(props) { ... }`: set the state, call APIs etc
-```javascript
-constructor(props) {
-  super(props);
-  this.state = {favoritecolor: "red"};
-}
-```
-2. `static getDerivedStateFromProps(props, state) { ... }`: this is the natural place to set the `state` object based on the initial `props`
-```javascript
-static getDerivedStateFromProps(props, state) {
-  return {favoritecolor: props.favcol };
-}
-```
-3. `render() { ... }`: outputs HTML to the DOM
-4. `componentDidMount() { ... }`: called after the component is rendered
-
-### Updating
-1. `static getDerivedStateFromProps(props, state) { ... }`: the first method that is called when a component gets updated. This is still the natural place to set the state object based on the initial props
-2. `shouldComponentUpdate(nextProps, nextState) { ... }`: return a Boolean value that specifies whether React should continue with the rendering or not
-3. `render() { ... }`
-4. `getSnapshotBeforeUpdate(prevProps, prevState) { ... }`: you have access to the `props` and `state` before the update, meaning that even after the update, you can check what the values were before the update. If the `getSnapshotBeforeUpdate()` method is present, you **should** also include the `componentDidUpdate()` method, otherwise you will get an error.
-```javascript
-getSnapshotBeforeUpdate(prevProps, prevState) {
-  // Are we adding new items to the list?
-  // Capture the scroll position so we can adjust scroll later.
-  if (prevProps.list.length < this.props.list.length) {
-    const list = this.listRef.current;
-    return list.scrollHeight - list.scrollTop;
-  }
-  return null;
-}
-```
-5. `componentDidUpdate(prevProps, prevState, snapshot) { ... }`: called after the component is updated in the DOM
-```javascript
-componentDidUpdate(prevProps, prevState, snapshot) {
-  // If we have a snapshot value, we've just added new items.
-  // Adjust scroll so these new items don't push the old ones out of view.
-  // (snapshot here is the value returned from getSnapshotBeforeUpdate)
-  if (snapshot !== null) {
-    const list = this.listRef.current;
-    list.scrollTop = list.scrollHeight - snapshot;
-  }
-}
-```
-
-### Unmounting
-1. `componentWillUnmount() { ... }`: called when the component is about to be removed from the DOM
-
-### Error Handling
-1. `static getDerivedStateFromError(error)`: returns a new state or null
-```javascript
-static getDerivedStateFromError(error) {
-  // Update state so the next render will show the fallback UI.
-  return { hasError: true };
-}
-```
-2. `componentDidCatch(error, info)`: called during the “commit” phase, so side-effects are permitted. It should be used for things like logging errors
-```javascript
-componentDidCatch(error, info) {
-  // Example "componentStack":
-  //   in ComponentThatThrows (created by App)
-  //   in ErrorBoundary (created by App)
-  //   in div (created by App)
-  //   in App
-  logComponentStackToMyService(info.componentStack);
-}
-```
-
-
 ## Components
 ### Functional vs Class
 #### Function
@@ -190,6 +117,78 @@ class Football extends React.Component {
     );
   }
   
+}
+```
+
+## Component Lifecycle
+The three phases are: **Mounting**, **Updating**, **Unmounting** and **ErrorHandling**.
+
+### Mounting
+1. `constructor(props) { ... }`: set the state, call APIs etc
+```javascript
+constructor(props) {
+  super(props);
+  this.state = {favoritecolor: "red"};
+}
+```
+2. `static getDerivedStateFromProps(props, state) { ... }`: this is the natural place to set the `state` object based on the initial `props`
+```javascript
+static getDerivedStateFromProps(props, state) {
+  return {favoritecolor: props.favcol };
+}
+```
+3. `render() { ... }`: outputs HTML to the DOM
+4. `componentDidMount() { ... }`: called after the component is rendered
+
+### Updating
+1. `static getDerivedStateFromProps(props, state) { ... }`: the first method that is called when a component gets updated. This is still the natural place to set the state object based on the initial props
+2. `shouldComponentUpdate(nextProps, nextState) { ... }`: return a Boolean value that specifies whether React should continue with the rendering or not
+3. `render() { ... }`
+4. `getSnapshotBeforeUpdate(prevProps, prevState) { ... }`: you have access to the `props` and `state` before the update, meaning that even after the update, you can check what the values were before the update. If the `getSnapshotBeforeUpdate()` method is present, you **should** also include the `componentDidUpdate()` method, otherwise you will get an error.
+```javascript
+getSnapshotBeforeUpdate(prevProps, prevState) {
+  // Are we adding new items to the list?
+  // Capture the scroll position so we can adjust scroll later.
+  if (prevProps.list.length < this.props.list.length) {
+    const list = this.listRef.current;
+    return list.scrollHeight - list.scrollTop;
+  }
+  return null;
+}
+```
+5. `componentDidUpdate(prevProps, prevState, snapshot) { ... }`: called after the component is updated in the DOM
+```javascript
+componentDidUpdate(prevProps, prevState, snapshot) {
+  // If we have a snapshot value, we've just added new items.
+  // Adjust scroll so these new items don't push the old ones out of view.
+  // (snapshot here is the value returned from getSnapshotBeforeUpdate)
+  if (snapshot !== null) {
+    const list = this.listRef.current;
+    list.scrollTop = list.scrollHeight - snapshot;
+  }
+}
+```
+
+### Unmounting
+1. `componentWillUnmount() { ... }`: called when the component is about to be removed from the DOM
+
+### Error Handling
+1. `static getDerivedStateFromError(error)`: returns a new state or null
+```javascript
+static getDerivedStateFromError(error) {
+  // Update state so the next render will show the fallback UI.
+  return { hasError: true };
+}
+```
+2. `componentDidCatch(error, info)`: called during the “commit” phase, so side-effects are permitted. It should be used for things like logging errors
+```javascript
+componentDidCatch(error, info) {
+  // Example "componentStack":
+  //   in ComponentThatThrows (created by App)
+  //   in ErrorBoundary (created by App)
+  //   in div (created by App)
+  //   in App
+  logComponentStackToMyService(info.componentStack);
 }
 ```
 
