@@ -184,7 +184,7 @@ class MyForm extends React.Component {
     };
   }
   
-  myChangeHandler = (event) => {
+  handleFieldChange = (event) => {
     let fieldName = event.target.name;
     let val = event.target.value;
     this.setState({ [fieldName]: val }); // access the field via state array
@@ -199,14 +199,14 @@ class MyForm extends React.Component {
         <input
           type='text'
           name='username'
-          onChange={this.myChangeHandler}
+          onChange={this.handleFieldChange}
         />
         
         <p>Enter your age:</p>
         <input
           type='text'
           name='age'
-          onChange={this.myChangeHandler}
+          onChange={this.handleFieldChange}
       />
       </form>
     );
