@@ -257,8 +257,7 @@ class MyForm extends React.Component {
 ```
 
 ## CSS
-You can style components using CSS, but the property names must be **camelCased** like for the events:
-`backgroundColor` vs `background-color`
+You can style components using CSS, but the property names must be **camelCased** like for the events, for example: `backgroundColor` vs `background-color`
 
 #### Inline CSS
 ```javascript
