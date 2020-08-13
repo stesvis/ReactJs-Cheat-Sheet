@@ -3,11 +3,12 @@ Basics of ReactJs and recommended VS Code extensions.
 * React tutorial: https://reactjs.org/docs/getting-started.html
 * W3 Schools React tutorial: https://www.w3schools.com/react/default.asp
 
+## Summary
 * <a href="#installation">Installation</a>
 * <a href="#components">Components</a>
 * <a href="#state">State</a>
 * <a href="#events">Events</a>
-* <a href="#component-lifecycle">Components Lifecycle</a>
+* <a href="#component-lifecycle">Component Lifecycle</a>
 * <a href="#lists">Lists</a>
 * <a href="#forms">Forms</a>
 * <a href="#css">CSS</a>
