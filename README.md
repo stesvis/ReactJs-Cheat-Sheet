@@ -72,3 +72,40 @@ class Welcome extends React.Component {
   this.state.name = 'Michael'; // WRONG
   this.setState({ name: 'John' }; // correct
 ```
+
+## Events
+React has the same events as HTML: click, change, mouseover etc.
+React events are written in camelCase syntax:
+* `onClick` instead of `onclick`.
+
+React event handlers are written inside curly braces:
+* `onClick={handleClick}`  instead of `onClick="handleClick()"`.
+
+### Passing Arguments and Use `this`
+To be able to use `this` in an event handler you have to use arrow functions:
+```javascript
+  handleClick = () => {
+    // you can use this
+    console.log(this);
+  }
+```
+To pass arguments you have to use the arrow function when you define the event:
+```javascript
+onClick={() => this.handleClick("Goal")}
+```
+#### Full Event Handler Example
+```javascript
+class Football extends React.Component {
+
+  handleClick = (arg) => {
+    console.log(arg); // "Goal"
+  }
+  
+  render() {
+    return (
+      <button onClick={() => this.handleClick("Goal")}>Take the shot!</button>
+    );
+  }
+  
+}
+```
