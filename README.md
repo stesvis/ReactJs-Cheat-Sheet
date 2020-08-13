@@ -255,3 +255,27 @@ class MyForm extends React.Component {
   }
 }
 ```
+
+## CSS
+You can style components using CSS, but the property names must be **camelCased** like for the events.
+
+#### Inline CSS
+```javascript
+<h1 style={{ backgroundColor: 'lightblue' }}>Hello Style!</h1>
+```
+
+#### Object CSS
+```javascript
+  render() {
+    const mystyle = {
+      color: 'white',
+      backgroundColor: 'DodgerBlue',
+      padding: '10px',
+      fontFamily: 'Arial'
+    };
+    
+    return (
+      <h1 style={mystyle}>Hello Style!</h1>
+    );
+  }
+```
