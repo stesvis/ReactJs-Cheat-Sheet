@@ -43,13 +43,32 @@ function Welcome(props) {
 ```
 
 #### Class
-* Does not take `props` as an argument
+* Accepts `props` as an argument in the constructor
 * Can access props with `this.props`
 
 ```javascript
 class Welcome extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  
   render() {
     return <h1>Hello, {this.props.name}</h1>;
   }
 }
+```
+
+## State
+* State can only be used in **class** components
+* State must be initialized in the **constructor**
+```javascript
+  constructor(props) {
+    super(props);
+    this.state = { name: 'John' };
+  }
+```
+* State can not be modified directly
+```javascript
+  this.state.name = 'Michael'; // WRONG
+  this.setState({ name: 'John' }; // correct
 ```
