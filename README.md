@@ -85,7 +85,7 @@ class Welcome extends React.Component {
 
 ## State
 * State can only be used in **class** components
-* State must be initialized in the **constructor**
+* State must be initialized in the **constructor** before you can use it
 ```javascript
   constructor(props) {
     super(props);
