@@ -30,3 +30,26 @@ The three phases are: **Mounting**, **Updating**, and **Unmounting**.
 
 ### Unmounting
 1. `componentWillUnmount() { ... }`
+
+## Components
+### Functional vs Class
+#### Function
+* Takes `props` as an argument
+
+```javascript
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+```
+
+#### Class
+* Does not take `props` as an argument
+* Can access props with `this.props`
+
+```javascript
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+```
