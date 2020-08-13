@@ -118,6 +118,17 @@ To pass arguments you have to use the arrow function when you define the event:
 ```javascript
 onClick={() => this.handleClick('Goal')}
 ```
+
+### Passing the Event
+You can pass the actual event and it will be automatically available:
+```javascript
+  handleClick = (event) => {
+    console.log(event);
+  }
+  
+  onClick={this.handleClick}
+```
+
 #### Full Event Handler Example
 ```javascript
 class Football extends React.Component {
