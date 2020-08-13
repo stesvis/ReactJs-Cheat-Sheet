@@ -91,19 +91,19 @@ To be able to use `this` in an event handler you have to use arrow functions:
 ```
 To pass arguments you have to use the arrow function when you define the event:
 ```javascript
-onClick={() => this.handleClick("Goal")}
+onClick={() => this.handleClick('Goal')}
 ```
 #### Full Event Handler Example
 ```javascript
 class Football extends React.Component {
 
   handleClick = (arg) => {
-    console.log(arg); // "Goal"
+    console.log(arg); // 'Goal'
   }
   
   render() {
     return (
-      <button onClick={() => this.handleClick("Goal")}>Take the shot!</button>
+      <button onClick={() => this.handleClick('Goal')}>Take the shot!</button>
     );
   }
   
