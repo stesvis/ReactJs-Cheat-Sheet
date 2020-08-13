@@ -15,46 +15,77 @@ npm start
 ```
 
 ## React App Lifecycle
-The three phases are: **Mounting**, **Updating**, and **Unmounting**.
+The three phases are: **Mounting**, **Updating**, **Unmounting** and **ErrorHandling**.
 
 ### Mounting
 1. `constructor(props) { ... }`: set the state, call APIs etc
 ```javascript
-  constructor(props) {
-    super(props);
-    this.state = {favoritecolor: "red"};
-  }
+constructor(props) {
+  super(props);
+  this.state = {favoritecolor: "red"};
+}
 ```
-2. `getDerivedStateFromProps(props, state) { ... }`: this is the natural place to set the `state` object based on the initial `props`
+2. `static getDerivedStateFromProps(props, state) { ... }`: this is the natural place to set the `state` object based on the initial `props`
 ```javascript
-  static getDerivedStateFromProps(props, state) {
-    return {favoritecolor: props.favcol };
-  }
+static getDerivedStateFromProps(props, state) {
+  return {favoritecolor: props.favcol };
+}
 ```
 3. `render() { ... }`: outputs HTML to the DOM
 4. `componentDidMount() { ... }`: called after the component is rendered
 
 ### Updating
-1. `getDerivedStateFromProps() { ... }`: the first method that is called when a component gets updated. This is still the natural place to set the state object based on the initial props
-2. `shouldComponentUpdate() { ... }`: return a Boolean value that specifies whether React should continue with the rendering or not
+1. `static getDerivedStateFromProps(props, state) { ... }`: the first method that is called when a component gets updated. This is still the natural place to set the state object based on the initial props
+2. `shouldComponentUpdate(nextProps, nextState) { ... }`: return a Boolean value that specifies whether React should continue with the rendering or not
 3. `render() { ... }`
-4. `getSnapshotBeforeUpdate() { ... }`: you have access to the `props` and `state` before the update, meaning that even after the update, you can check what the values were before the update. If the `getSnapshotBeforeUpdate()` method is present, you should also include the `componentDidUpdate()` method, otherwise you will get an error.
+4. `getSnapshotBeforeUpdate(prevProps, prevState) { ... }`: you have access to the `props` and `state` before the update, meaning that even after the update, you can check what the values were before the update. If the `getSnapshotBeforeUpdate()` method is present, you **should** also include the `componentDidUpdate()` method, otherwise you will get an error.
 ```javascript
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-    document.getElementById("div1").innerHTML =
-    "Before the update, the favorite was " + prevState.favoritecolor;
+getSnapshotBeforeUpdate(prevProps, prevState) {
+  // Are we adding new items to the list?
+  // Capture the scroll position so we can adjust scroll later.
+  if (prevProps.list.length < this.props.list.length) {
+    const list = this.listRef.current;
+    return list.scrollHeight - list.scrollTop;
   }
+  return null;
+}
 ```
-5. `componentDidUpdate() { ... }`: called after the component is updated in the DOM
+5. `componentDidUpdate(prevProps, prevState, snapshot) { ... }`: called after the component is updated in the DOM
 ```javascript
-  componentDidUpdate() {
-    document.getElementById("mydiv").innerHTML =
-    "The updated favorite is " + this.state.favoritecolor;
+componentDidUpdate(prevProps, prevState, snapshot) {
+  // If we have a snapshot value, we've just added new items.
+  // Adjust scroll so these new items don't push the old ones out of view.
+  // (snapshot here is the value returned from getSnapshotBeforeUpdate)
+  if (snapshot !== null) {
+    const list = this.listRef.current;
+    list.scrollTop = list.scrollHeight - snapshot;
   }
+}
 ```
 
 ### Unmounting
 1. `componentWillUnmount() { ... }`: called when the component is about to be removed from the DOM
+
+### Error Handling
+1. `static getDerivedStateFromError(error)`: returns a new state or null
+```javascript
+static getDerivedStateFromError(error) {
+  // Update state so the next render will show the fallback UI.
+  return { hasError: true };
+}
+```
+2. `componentDidCatch(error, info)`: called during the “commit” phase, so side-effects are permitted. It should be used for things like logging errors
+```javascript
+componentDidCatch(error, info) {
+  // Example "componentStack":
+  //   in ComponentThatThrows (created by App)
+  //   in ErrorBoundary (created by App)
+  //   in div (created by App)
+  //   in App
+  logComponentStackToMyService(info.componentStack);
+}
+```
+
 
 ## Components
 ### Functional vs Class
@@ -87,15 +118,15 @@ class Welcome extends React.Component {
 * State can only be used in **class** components
 * State must be initialized in the **constructor** before you can use it
 ```javascript
-  constructor(props) {
-    super(props);
-    this.state = { name: 'John' };
-  }
+constructor(props) {
+  super(props);
+  this.state = { name: 'John' };
+}
 ```
 * State can not be modified directly
 ```javascript
-  this.state.name = 'Michael'; // WRONG
-  this.setState({ name: 'John' }; // correct
+this.state.name = 'Michael'; // WRONG
+this.setState({ name: 'John' }; // correct
 ```
 
 ## Events
@@ -109,10 +140,10 @@ React event handlers are written inside curly braces:
 ### Passing Arguments and Use `this`
 To be able to use `this` in an event handler you have to use arrow functions:
 ```javascript
-  handleClick = () => {
-    // you can use this
-    console.log(this);
-  }
+handleClick = () => {
+  // you can use this
+  console.log(this);
+}
 ```
 To pass arguments you have to use the arrow function when you define the event:
 ```javascript
@@ -126,22 +157,22 @@ handleClick = (arg) => { ... }
 #### Binding an Event Handler
 Another option to use `this` in an event handler is to bind it in the constructor:
 ```javascript
-  constructor(props) {
-    super(props);
+constructor(props) {
+  super(props);
 
-    // This binding is necessary to make `this` work in the callback
-    this.handleClick = this.handleClick.bind(this);
-  }
+  // This binding is necessary to make `this` work in the callback
+  this.handleClick = this.handleClick.bind(this);
+}
 ```
 
 ### Passing the Event
 You can pass the actual event and it will be automatically available:
 ```javascript
-  handleClick = (event) => {
-    console.log(event);
-  }
-  
-  onClick={this.handleClick}
+handleClick = (event) => {
+  console.log(event);
+}
+
+onClick={this.handleClick}
 ```
 
 #### Full Event Handler Example
@@ -281,18 +312,18 @@ You can style components using CSS, but the property names must be **camelCased*
 
 ### Object CSS
 ```javascript
-  render() {
-    const bigBlueTitleStyle = {
-      color: DodgerBlue;
-      padding: 40px;
-      font-family: Arial;
-      text-align: center;
-    };
-    
-    return (
-      <h1 style={bigBlueTitleStyle}>This is a Title</h1>
-    );
-  }
+render() {
+  const bigBlueTitleStyle = {
+    color: DodgerBlue;
+    padding: 40px;
+    font-family: Arial;
+    text-align: center;
+  };
+
+  return (
+    <h1 style={bigBlueTitleStyle}>This is a Title</h1>
+  );
+}
 ```
 
 ### Stylesheets
