@@ -170,6 +170,11 @@ const listItems = persons.map((person) =>
 React forms tutorial: https://reactjs.org/docs/forms.html
 W3 Schools React forms tutorial: https://www.w3schools.com/react/react_forms.asp
 
+#### Notes
+* The `state` field names must match the `form` field names
+* You can make an event handler to handle changes from each `form` field
+* The `handleSubmit` event handler needs to call `event.preventDefault()` to **prevent page reload**, check the form **validation**, and **submit** the form via API call
+
 #### Submitting a Form
 ```javascript
 class MyForm extends React.Component {
