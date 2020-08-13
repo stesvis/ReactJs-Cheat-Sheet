@@ -16,20 +16,43 @@ npm start
 The three phases are: **Mounting**, **Updating**, and **Unmounting**.
 
 ### Mounting
-1. `constructor() { ... }`
-2. `getDerivedStateFromProps() { ... }`
-3. `render() { ... }`
-4. `componentDidMount() { ... }`
+1. `constructor(props) { ... }`: set the state, call APIs etc
+```javascript
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: "red"};
+  }
+```
+2. `getDerivedStateFromProps(props, state) { ... }`: this is the natural place to set the `state` object based on the initial `props`
+```javascript
+  static getDerivedStateFromProps(props, state) {
+    return {favoritecolor: props.favcol };
+  }
+```
+3. `render() { ... }`: outputs HTML to the DOM
+4. `componentDidMount() { ... }`: called after the component is rendered
 
 ### Updating
-1. `getDerivedStateFromProps() { ... }`
-2. `shouldComponentUpdate() { ... }`
+1. `getDerivedStateFromProps() { ... }`: the first method that is called when a component gets updated. This is still the natural place to set the state object based on the initial props
+2. `shouldComponentUpdate() { ... }`: return a Boolean value that specifies whether React should continue with the rendering or not
 3. `render() { ... }`
-4. `getSnapshotBeforeUpdate() { ... }`
-5. `componentDidUpdate() { ... }`
+4. `getSnapshotBeforeUpdate() { ... }`: you have access to the `props` and `state` before the update, meaning that even after the update, you can check what the values were before the update. If the `getSnapshotBeforeUpdate()` method is present, you should also include the `componentDidUpdate()` method, otherwise you will get an error.
+```javascript
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    document.getElementById("div1").innerHTML =
+    "Before the update, the favorite was " + prevState.favoritecolor;
+  }
+```
+5. `componentDidUpdate() { ... }`: called after the component is updated in the DOM
+```javascript
+  componentDidUpdate() {
+    document.getElementById("mydiv").innerHTML =
+    "The updated favorite is " + this.state.favoritecolor;
+  }
+```
 
 ### Unmounting
-1. `componentWillUnmount() { ... }`
+1. `componentWillUnmount() { ... }`: called when the component is about to be removed from the DOM
 
 ## Components
 ### Functional vs Class
