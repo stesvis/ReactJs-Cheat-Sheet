@@ -3,6 +3,9 @@ Basics of ReactJs and recommended VS Code extensions.
 * React tutorial: https://reactjs.org/docs/getting-started.html
 * W3 Schools React tutorial: https://www.w3schools.com/react/default.asp
 
+<a href="#installation">Installation</a>
+<a href="#components">Components</a>
+
 ## Installation
 
 * Install NodeJs: https://nodejs.org/en/
