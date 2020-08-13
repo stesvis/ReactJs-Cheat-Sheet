@@ -146,3 +146,22 @@ class Football extends React.Component {
   
 }
 ```
+
+## Lists
+To render lists keep in mind two things:
+1. You should use the javascript `map()` function
+2. Every list item must have a `key`
+
+```javascript
+const persons = [
+  { id: 1, name: 'John' },
+  { id: 2, name: 'Mary' },
+  { id: 3, name: 'Michael' },
+];
+
+const listItems = persons.map((person) =>
+  <li key={person.id}>
+    {person.name}
+  </li>
+);
+```
