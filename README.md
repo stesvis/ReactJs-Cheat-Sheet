@@ -1,7 +1,7 @@
 # ReactJs-Cheat-Sheet
 Basics of ReactJs and recommended VS Code extensions.
 * React tutorial: https://reactjs.org/docs/getting-started.html
-* W3 Schools React Tutorial: https://www.w3schools.com/react/default.asp
+* W3 Schools React tutorial: https://www.w3schools.com/react/default.asp
 
 ## Installation
 
@@ -164,4 +164,50 @@ const listItems = persons.map((person) =>
     {person.name}
   </li>
 );
+```
+
+## Forms
+React forms tutorial: https://reactjs.org/docs/forms.html
+W3 Schools React forms tutorial: https://www.w3schools.com/react/react_forms.asp
+
+#### Submitting a Form
+```javascript
+class MyForm extends React.Component {
+
+  constructor(props) {
+    super(props);
+    
+    // state field names must match the form field names
+    this.state = {
+      username: '',
+      age: null,
+    };
+  }
+  
+  myChangeHandler = (event) => {
+    let fieldName = event.target.name;
+    let val = event.target.value;
+    this.setState({ [fieldName]: val }); // access the field via state array
+  }
+  
+  render() {
+    return (
+      <form>
+        <h1>Hello {this.state.username} {this.state.age}</h1>
+        <p>Enter your name:</p>
+        <input
+          type='text'
+          name='username'
+          onChange={this.myChangeHandler}
+        />
+        <p>Enter your age:</p>
+        <input
+          type='text'
+          name='age'
+          onChange={this.myChangeHandler}
+      />
+      </form>
+    );
+  }
+}
 ```
