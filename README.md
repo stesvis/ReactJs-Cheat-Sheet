@@ -1,5 +1,7 @@
 # ReactJs-Cheat-Sheet
 Basics of ReactJs and recommended VS Code extensions.
+* React tutorial: https://reactjs.org/docs/getting-started.html
+* W3 Schools React Tutorial: https://www.w3schools.com/react/default.asp
 
 ## Installation
 
