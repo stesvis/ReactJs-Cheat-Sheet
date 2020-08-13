@@ -260,7 +260,7 @@ class MyForm extends React.Component {
           onChange={this.handleChange}
         />
         
-        <select value={this.state.myCar}>
+        <select value={this.state.myCar} onChange={this.handleChange}>
           <option value="Ford">Ford</option>
           <option value="Volvo">Volvo</option>
           <option value="Fiat">Fiat</option>
