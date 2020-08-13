@@ -120,13 +120,14 @@ onClick={() => this.handleClick('Goal')}
 ```javascript
 class Football extends React.Component {
 
-  handleClick = (arg) => {
+  handleClick = (arg, event) => {
     console.log(arg); // 'Goal'
   }
   
   render() {
+    // event is optional, but you can pass it like this:
     return (
-      <button onClick={() => this.handleClick('Goal')}>Take the shot!</button>
+      <button onClick={(event) => this.handleClick('Goal', event)}>Take the shot!</button>
     );
   }
   
