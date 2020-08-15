@@ -263,19 +263,21 @@ class MyForm extends React.Component {
   }
   
   handleChange = (event) => {
-    let fieldName = event.target.name;
-    let val = event.target.value;
+    //let fieldName = event.target.name;
+    //let value = event.target.value;
+    
+    let { fieldName, value } = event.target; // extract those two values
     
     // you can do live validation in this handler or in the submit handler
     if (fieldName === "age") {
-      if (!Number(val)) {
+      if (!Number(value)) {
         //alert("Your age must be a number");
         error = <strong>Your age must be a number</strong>;
       }
     }
     
     this.setState({ errorMessage: error });
-    this.setState({ [fieldName]: val }); // access the field via state array
+    this.setState({ [fieldName]: value }); // access the field via state array
   }
   
   render() {
