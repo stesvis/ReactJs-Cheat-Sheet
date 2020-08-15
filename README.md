@@ -241,6 +241,8 @@ class MyForm extends React.Component {
     this.state = {
       username: 'Initial value',
       age: null,
+      isFriendly: false,
+      gender: null,
       myCar: 'Volvo',
       errorMessage: ''
     };
@@ -266,7 +268,7 @@ class MyForm extends React.Component {
     //let fieldName = event.target.name;
     //let value = event.target.value;
     
-    let { fieldName, value } = event.target; // extract those two values
+    let { fieldName, value, type, checked } = event.target; // extract those two values
     
     // you can do live validation in this handler or in the submit handler
     if (fieldName === "age") {
@@ -277,7 +279,8 @@ class MyForm extends React.Component {
     }
     
     this.setState({ errorMessage: error });
-    this.setState({ [fieldName]: value }); // access the field via state array
+    
+    type === 'checkbox' ? this.setState({ [name]: checked }) : this.setState({ [fieldName]: value }); // access the field via state array
   }
   
   render() {
@@ -287,6 +290,7 @@ class MyForm extends React.Component {
         
         {this.state.errorMessage}
         
+        <!-- Text -->
         <p>Enter your name:</p>
         <input
           type='text'
@@ -295,6 +299,7 @@ class MyForm extends React.Component {
           onChange={this.handleChange}
         />
         
+        <!-- Number -->
         <p>Enter your age:</p>
         <input
           type='text'
@@ -302,11 +307,30 @@ class MyForm extends React.Component {
           onChange={this.handleChange}
         />
         
+        <!-- Checkbox -->
+        <label>
+          <input type="checkbox" name="isFriendly" checkeck={this.state.isFriendly} onChange="{this.handleChange} />
+          Is friendly
+        </label
+        
+        <!-- Radio buttons -->
+        <label>
+          <input type="radio" name="gender" value="Male" checkeck={this.state.gender === 'male'} onChange="{this.handleChange} />
+          Male
+        </label>
+        <label>
+          <input type="radio" name="gender" value="Female" checkeck={this.state.gender === 'female'} onChange="{this.handleChange} />
+          Female
+        </label>
+        
+        <!-- Select -->
         <select value={this.state.myCar} onChange={this.handleChange}>
           <option value="Ford">Ford</option>
           <option value="Volvo">Volvo</option>
           <option value="Fiat">Fiat</option>
         </select>
+        
+        <
       </form>
     );
   }
