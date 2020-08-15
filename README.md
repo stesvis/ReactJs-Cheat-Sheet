@@ -12,6 +12,8 @@ Basics of ReactJs and recommended VS Code extensions.
 * <a href="#lists">Lists</a>
 * <a href="#forms">Forms</a>
 * <a href="#css">CSS</a>
+* <a href="#consuming-apis">Consuming APIs</a>
+* <a href="#routing">Routing</a>
 
 ## Installation
 
