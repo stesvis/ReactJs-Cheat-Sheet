@@ -378,3 +378,7 @@ import styles from './mystyle.module.css';
 ```javascript
 return <h1 className={styles.bigBlueTitle}>This is a Title</h1>;
 ```
+
+## Consuming APIs
+
+## Routing
