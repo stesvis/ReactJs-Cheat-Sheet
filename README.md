@@ -455,8 +455,8 @@ axios.get('/user?ID=12345')
 ALL example:
 ```javascript
 axios.all([
-  axios.get('https://api.github.com/users/hacktivist123'),
-  axios.get('https://api.github.com/users/adenekan41')
+  axios.get('https://jsonplaceholder.typicode.com/posts'),
+  axios.get('https://jsonplaceholder.typicode.com/users')
 ])
 .then(response => {
   console.log('Date created: ', response[0].data.created_at);
