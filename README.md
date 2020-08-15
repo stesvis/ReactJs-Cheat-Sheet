@@ -406,5 +406,48 @@ return <h1 className={styles.bigBlueTitle}>This is a Title</h1>;
 ```
 
 ## Consuming APIs
+You can use the javascript `fetch()` or a library like **Axios**.
+
+### Fetch
+Usually you fetch data in the `componentDidMount()` method:
+```javascript
+componentDidMount() {
+  fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(response => response.json())
+    .then(data => console.log(data));
+}
+```
+
+### Axios
+Axios: https://github.com/axios/axios
+
+#### Available Methods
+* `axios.request(config)`
+* `axios.get(url[, config])`
+* `axios.delete(url[, config])`
+* `axios.head(url[, config])`
+* `axios.options(url[, config])`
+* `axios.post(url[, data[, config]])`
+* `axios.put(url[, data[, config]])`
+* `axios.patch(url[, data[, config]])`
+
+GET example:
+```javascript
+const axios = require('axios');
+
+// Make a request for a user with a given ID
+axios.get('/user?ID=12345')
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+```
 
 ## Routing
