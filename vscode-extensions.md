@@ -27,7 +27,8 @@ This extension contains code snippets for Reactjs and is based on the awesome ba
 This extension provides you JavaScript and React/Redux snippets in ES7 with Babel plugin features for VS Code.
 
 https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets
-
+* `cp` → `const { } = this.props`
+* `cs` → `const { } = this.state`
 * `imr` → `import React from 'react'`
 * `imrd` → `import ReactDOM from 'react-dom'`
 * `imrc` → `import React, { Component } from 'react'`
