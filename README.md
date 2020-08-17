@@ -469,9 +469,9 @@ axios.all([
 ```
 
 ## Routing
-You need to install React-router-dom
+You need to install **react-router-dom**:
 * `$ npm install --save react-router-dom`
-And then you can start using components like `<Router>` (`BrowserRouter`), `<Link>` and `<Switch>`.
+And then you can start using components like `<Router>` (BrowserRouter), `<Link>`, `<Switch>` and `<Route>` to build navbars and handle your menus.
 
 #### Example
 ```javascript
