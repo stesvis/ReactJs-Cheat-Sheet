@@ -1,4 +1,5 @@
 # VS Code Extensions
+List of my favorite VS Code extensions for **React** and **Javascript**.
 
 * <a href="#prettier">Prettier</a>
 * <a href="#reactjs-code-snippets">Reactjs Code Snippets</a>
