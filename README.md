@@ -16,6 +16,8 @@ Basics of ReactJs and recommended VS Code extensions.
 * <a href="#css">CSS</a>
 * <a href="#consuming-apis">Consuming APIs</a>
 * <a href="#routing">Routing</a>
+* <a href="#hooks">Hooks</a>
+* <a href="#other-topics">Other Topics</a>
 
 ## Installation
 
@@ -467,3 +469,11 @@ axios.all([
 ```
 
 ## Routing
+
+## Hooks
+Hooks allow to use functional components with `state`.
+
+## Other Topics
+
+### Fragment
+You should use `<Fragment>...</Fragment>` to wrap the return value of a component instead of wrapping everything inside a `<div>...</div>`
