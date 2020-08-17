@@ -16,6 +16,7 @@ List of my favorite VS Code extensions for **React** and **Javascript**.
 
 ## Prettier
 Prettier is a JavaScript, TypeScript and CSS formatting for VSCode with ESLint integration.
+
 https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 
 ## Reactjs Code Snippets
