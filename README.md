@@ -2,10 +2,10 @@
 
 # ReactJs Cheat Sheet
 Basics of ReactJs and recommended VS Code extensions.
-* React tutorial: https://reactjs.org/docs/getting-started.html
-* W3 Schools React tutorial: https://www.w3schools.com/react/default.asp
-* VS Code Extensions: https://github.com/stesvis/ReactJs-Cheat-Sheet/blob/master/vscode-extensions.md
-* React Developer Tools: https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
+* **React tutorial**: https://reactjs.org/docs/getting-started.html
+* **W3 Schools React tutorial**: https://www.w3schools.com/react/default.asp
+* **VS Code Extensions**: https://github.com/stesvis/ReactJs-Cheat-Sheet/blob/master/vscode-extensions.md
+* **React Developer Tools**: https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
 
 ## Summary
 * <a href="#installation">Installation</a>
