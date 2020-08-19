@@ -17,6 +17,7 @@ Basics of ReactJs and recommended VS Code extensions.
 * <a href="#consuming-apis">Consuming APIs</a>
 * <a href="#routing">Routing</a>
 * <a href="#hooks">Hooks</a>
+* <a href="#context">Context</a>
 * <a href="#other-topics">Other Topics</a>
 
 ## Installation
@@ -564,7 +565,110 @@ function Dashboard() {
 ## Hooks
 Hooks allow to use functional components with `state`.
 
+**Note**: Don’t call Hooks inside loops, conditions, or nested functions.
+
+### useState()
+With this hook you can use `state` in a functional component.
+
+https://reactjs.org/docs/hooks-state.html
+
+It takes an argument which is the initial value of the state property and it returns an array of two elements:
+1. The state property
+2. A function to update that property
+
+```javascript 
+const [<variable_name>, <function>] = useState(<variable_initial_value>);
+```
+
+#### Example
+```javascript
+import React, { useState } from 'react';
+
+function Example() {
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+
+### useEffect()
+The Effect Hook lets you perform side effects in function components.
+
+https://reactjs.org/docs/hooks-effect.html
+
+```javascript
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+    // Update the document title using the browser API
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+
+## Context
+`Context` allows you to pass props from a parent component directly to any child component without passing it to every component in the tree.
+
+`TODO`
+
+https://reactjs.org/docs/context.html
+
 ## Other Topics
 
 ### Fragment
 You should use `<Fragment>...</Fragment>` to wrap the return value of a component instead of wrapping everything inside a `<div>...</div>`
+
+#### Example
+```javascript
+class Columns extends Component {
+  render() {
+    return (
+      <Fragment>
+        <td>Hello</td>
+        <td>World</td>
+      </Fragment>
+    );
+  }
+}
+```
+The code above results in the following html
+```html
+<table>
+  <tr>
+    <td>Hello</td>
+    <td>World</td>
+  </tr>
+</table>
+```
+
+### Spread operator
+It expands the array into individual elements. The syntax is `[...<name_of_the_array_to_spread>]`.
+
+#### Example
+```javascript
+const react = ['React'];
+const spelling = [...react];
+
+// ['R', 'e', 'a', 'c', 't']
+```
