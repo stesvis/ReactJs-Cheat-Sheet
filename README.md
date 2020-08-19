@@ -1,4 +1,4 @@
-`...In Progress...`
+`...in progress...`
 
 # ReactJs Cheat Sheet
 Basics of ReactJs and recommended VS Code extensions.
