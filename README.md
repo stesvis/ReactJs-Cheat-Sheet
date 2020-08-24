@@ -656,6 +656,8 @@ Basically:
 - return `true` if you don't want to re-render
 - return `false` if you want to re-render
 
+The second function argument is however optional.
+
 ```javascript
 function Example(props) {  
   return (
