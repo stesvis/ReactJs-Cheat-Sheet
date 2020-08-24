@@ -628,6 +628,17 @@ function Example() {
   );
 }
 ```
+**Note**
+- if you do not pass a second argument it will execute `useEffect` every time the component is re-rendered (so on every change of `state` and/or `props`
+- if you pass an array of `state` and/or `props` a second argument to `useEffect` it will execute `useEffect` every time one of those variables are updated
+- if you pass an empty array it will execute `useEffect` only once, and it's the equivalent of `componentDidMount()`:
+```javascript
+  useEffect(() => {
+    // Update the document title using the browser API
+    document.title = `You clicked ${count} times`;
+  }, []); // will only execute it once
+```
+
 
 ## Context
 `Context` allows you to pass props from a parent component directly to any child component without passing it to every component in the tree.
