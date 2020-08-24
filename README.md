@@ -649,6 +649,17 @@ function Example() {
   }, []); // will only execute it once
 ```
 
+### `memo()`
+`memo()` is used to remember the state of a component, and should be used in functional components to simulate the `shouldComponentUpdate()` event.
+```javascript
+function Example(props) {
+  return (
+    // do stuff
+  );
+}
+
+export default React.memo(Example);
+```
 
 ## Context
 `Context` allows you to pass props from a parent component directly to any child component without passing it to every component in the tree.
