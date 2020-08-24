@@ -651,6 +651,11 @@ function Example() {
 
 ### `memo()`
 `memo()` is used to remember the state of a component, and should be used in functional components to simulate the `shouldComponentUpdate()` event.
+
+Basically:
+- return `true` if you don't want to re-render
+- return `false` if you want to re-render
+
 ```javascript
 function Example(props) {  
   return (
