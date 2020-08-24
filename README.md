@@ -616,6 +616,10 @@ function Example() {
   useEffect(() => {
     // Update the document title using the browser API
     document.title = `You clicked ${count} times`;
+    
+    return () => {
+      // componentWillUnmount()
+    };
   });
 
   return (
