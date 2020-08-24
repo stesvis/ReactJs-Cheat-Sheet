@@ -618,9 +618,15 @@ function Example() {
     document.title = `You clicked ${count} times`;
     
     return () => {
+      // runs before every component update
+    };
+  }); // no second argument: runs at every component update
+
+  useEffect(() => {
+    return () => {
       // componentWillUnmount()
     };
-  });
+  }, []); // this will make it run only once, to simulate componentWillUnmount()
 
   return (
     <div>
