@@ -601,7 +601,7 @@ function Example() {
 }
 ```
 
-### `useEffect()``
+### `useEffect()`
 The Effect Hook lets you perform side effects in function components.
 
 https://reactjs.org/docs/hooks-effect.html
