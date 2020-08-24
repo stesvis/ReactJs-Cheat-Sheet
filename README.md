@@ -569,7 +569,7 @@ Hooks allow to use functional components with `state`.
 
 **Note**: Don’t call Hooks inside loops, conditions, or nested functions.
 
-### useState()
+### `useState()`
 With this hook you can use `state` in a functional component.
 
 https://reactjs.org/docs/hooks-state.html
@@ -601,7 +601,7 @@ function Example() {
 }
 ```
 
-### useEffect()
+### `useEffect()``
 The Effect Hook lets you perform side effects in function components.
 
 https://reactjs.org/docs/hooks-effect.html
@@ -628,7 +628,7 @@ function Example() {
   );
 }
 ```
-**Note**
+#### `useEffect()` dependencies
 - if you do not pass a second argument it will execute `useEffect` every time the component is re-rendered (so on every change of `state` and/or `props`
 - if you pass an array of `state` and/or `props` a second argument to `useEffect` it will execute `useEffect` every time one of those variables are updated
 - if you pass an empty array it will execute `useEffect` only once, and it's the equivalent of `componentDidMount()`:
