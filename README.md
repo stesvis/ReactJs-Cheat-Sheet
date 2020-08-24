@@ -652,13 +652,16 @@ function Example() {
 ### `memo()`
 `memo()` is used to remember the state of a component, and should be used in functional components to simulate the `shouldComponentUpdate()` event.
 ```javascript
-function Example(props) {
+function Example(props) {  
   return (
     // do stuff
   );
 }
 
-export default React.memo(Example);
+export default React.memo(Example, (prevProps, nextProps) => {
+  // in a form: component should not update if the title did not change
+  return prevProps.title === nextProps.title;
+});
 ```
 
 ## Context
